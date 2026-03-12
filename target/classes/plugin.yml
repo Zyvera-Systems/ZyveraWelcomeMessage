@@ -1,0 +1,24 @@
+name: ZyveraWelcomeMessage
+version: '1.0.0'
+main: dev.zyverasystems.welcomemessage.ZyveraWelcomeMessage
+api-version: '1.21'
+description: Advanced welcome message plugin with gradient support
+authors: [Thomas, Zyvera-Systems]
+website: https://zyvera-systems.dev
+
+folia-supported: true
+
+commands:
+  zwm:
+    description: ZyveraWelcomeMessage main command
+    usage: /zwm <reload|preview>
+    permission: zyvera.welcomemessage.admin
+    aliases: [welcomemessage, wm]
+
+permissions:
+  zyvera.welcomemessage.admin:
+    description: Access to admin commands
+    default: op
+  zyvera.welcomemessage.bypass:
+    description: Bypass welcome messages
+    default: false
