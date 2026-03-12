@@ -2,7 +2,6 @@ package dev.zyverasystems.welcomemessage.listener;
 
 import dev.zyverasystems.welcomemessage.ZyveraWelcomeMessage;
 import dev.zyverasystems.welcomemessage.util.FoliaUtil;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,9 +21,8 @@ public class JoinListener implements Listener {
 
         long delay = plugin.getConfigManager().getMessageDelayTicks();
 
-        FoliaUtil.runForEntity(plugin, event.getPlayer(), (player) -> {
-            if (!player.isOnline()) return;
-            plugin.getMessageManager().handleJoin((Player) player);
+        FoliaUtil.runForPlayer(plugin, event.getPlayer(), (player) -> {
+            plugin.getMessageManager().handleJoin(player);
         }, Math.max(1, delay));
     }
 }
