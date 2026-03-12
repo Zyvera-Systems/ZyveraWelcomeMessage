@@ -1,0 +1,158 @@
+# ╔══════════════════════════════════════════════════════════════╗
+# ║           ZyveraWelcomeMessage - Konfiguration              ║
+# ║   Farbverläufe werden ab Paper 1.16+ unterstützt            ║
+# ║   Nutze MiniMessage-Format: https://docs.advntr.dev/        ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+# Prefix für Plugin-Nachrichten
+prefix: "<dark_gray>[<gradient:#a855f7:#6366f1>Zyvera<white>WM</white></gradient><dark_gray>]</dark_gray>"
+
+# ─────────────────────────────────────────────
+#  GLOBALE WILLKOMMENSNACHRICHT
+#  Wird für alle Spieler angezeigt, die keine
+#  individuelle Nachricht konfiguriert haben.
+# ─────────────────────────────────────────────
+global:
+  enabled: true
+
+  # Nachricht die der Spieler selbst sieht (private join message)
+  join-message:
+    enabled: true
+    # {player} = Spielername | {displayname} = Display Name
+    # Nutze MiniMessage: <gradient:#farbe1:#farbe2>Text</gradient>
+    text: "<newline><gradient:#a855f7:#6366f1>✦ Willkommen auf dem Server, {displayname}<gradient:#a855f7:#6366f1>! ✦</gradient><newline><gray>Schön, dass du wieder da bist.</gray><newline>"
+
+  # Nachricht die ALLE Spieler sehen wenn jemand joint
+  broadcast-message:
+    enabled: true
+    text: "<gray>» <gradient:#a855f7:#6366f1>{player}</gradient> <gray>hat den Server betreten.</gray>"
+
+  # Feuerwerk-Effekt beim Joinen
+  fireworks:
+    enabled: true
+    # Anzahl der Feuerwerke
+    count: 2
+    # Verzögerung in Ticks zwischen den Feuerwerken (20 Ticks = 1 Sekunde)
+    delay-ticks: 10
+    # Feuerwerkstypen: BALL, BALL_LARGE, STAR, BURST, CREEPER
+    type: BALL_LARGE
+    # Farben (Hex-Format)
+    colors:
+      - "#a855f7"
+      - "#6366f1"
+      - "#ffffff"
+    # Fade-Farben (Farben beim Verblassen)
+    fade-colors:
+      - "#1e1b4b"
+    # Glitzern?
+    flicker: true
+    # Spur hinterlassen?
+    trail: true
+
+  # Sound-Effekt beim Joinen
+  sound:
+    enabled: true
+    # Minecraft Sound-Namen: https://minecraft.wiki/w/Sounds.json
+    sound: "ENTITY_PLAYER_LEVELUP"
+    # Lautstärke (0.0 - 2.0)
+    volume: 1.0
+    # Tonhöhe (0.5 - 2.0)
+    pitch: 1.2
+    # true = nur der joinende Spieler hört es | false = alle hören es
+    only-for-player: true
+
+# ─────────────────────────────────────────────
+#  INDIVIDUELLE SPIELER-NACHRICHTEN
+#  Überschreibt die globale Nachricht für
+#  bestimmte Spieler (UUID oder Spielername).
+# ─────────────────────────────────────────────
+player-messages:
+  enabled: true
+  players:
+    # Beispiel mit Spielername (oder UUID als Key)
+    "Notch":
+      join-message:
+        enabled: true
+        text: "<newline><gold><bold>⚡ DER MINECRAFT-SCHÖPFER IST DA! ⚡</bold></gold><newline><gradient:#fbbf24:#f59e0b>Willkommen, Notch! Der Server verbeugt sich vor dir.</gradient><newline>"
+      broadcast-message:
+        enabled: true
+        text: "<yellow>» <bold>NOTCH</bold> hat den Server betreten! Alle verneigen euch! 👑</yellow>"
+      fireworks:
+        enabled: true
+        count: 5
+        delay-ticks: 5
+        type: STAR
+        colors:
+          - "#fbbf24"
+          - "#f59e0b"
+          - "#ffffff"
+        fade-colors:
+          - "#78350f"
+        flicker: true
+        trail: true
+      sound:
+        enabled: true
+        sound: "UI_TOAST_CHALLENGE_COMPLETE"
+        volume: 1.0
+        pitch: 1.0
+        only-for-player: false
+
+    # Weiteres Beispiel
+    "Steve":
+      join-message:
+        enabled: true
+        text: "<newline><gradient:#22c55e:#16a34a>Willkommen zurück, Steve!</gradient><newline>"
+      broadcast-message:
+        enabled: false
+        text: ""
+      fireworks:
+        enabled: false
+      sound:
+        enabled: true
+        sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+        volume: 0.8
+        pitch: 1.0
+        only-for-player: true
+
+# ─────────────────────────────────────────────
+#  ERST-JOIN NACHRICHT
+#  Nur beim allerersten Mal joinen
+# ─────────────────────────────────────────────
+first-join:
+  enabled: true
+  join-message:
+    enabled: true
+    text: "<newline><gradient:#ec4899:#a855f7:#6366f1>✨ Herzlich Willkommen auf dem Server, {displayname}! ✨</gradient><newline><gray>Wir freuen uns, dich bei uns begrüßen zu dürfen.</gray><newline><gradient:#6366f1:#a855f7>Viel Spaß!</gradient><newline>"
+  broadcast-message:
+    enabled: true
+    text: "<gradient:#ec4899:#a855f7>✨ {player} betritt zum ersten Mal unseren Server! Heißt ihn/sie willkommen! ✨</gradient>"
+  fireworks:
+    enabled: true
+    count: 4
+    delay-ticks: 8
+    type: BURST
+    colors:
+      - "#ec4899"
+      - "#a855f7"
+      - "#6366f1"
+    fade-colors:
+      - "#1e1b4b"
+    flicker: true
+    trail: true
+  sound:
+    enabled: true
+    sound: "UI_TOAST_CHALLENGE_COMPLETE"
+    volume: 1.0
+    pitch: 1.0
+    only-for-player: false
+
+# ─────────────────────────────────────────────
+#  ERWEITERTE EINSTELLUNGEN
+# ─────────────────────────────────────────────
+settings:
+  # Verzögerung in Ticks bevor die Nachricht angezeigt wird (nach dem Joinen)
+  message-delay-ticks: 20
+  # Debug-Modus (mehr Logs in der Konsole)
+  debug: false
+  # Spieler mit dieser Permission bekommen keine Nachrichten
+  bypass-permission: "zyvera.welcomemessage.bypass"
